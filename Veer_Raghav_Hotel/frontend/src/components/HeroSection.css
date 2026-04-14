@@ -1,0 +1,394 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+/* General Styles */
+body {
+    font-family: Poppins;
+    margin: 0;
+    background-color: #ffff;
+    color: #E68A00;
+}
+
+svg {
+    width: 25px;
+}
+
+/* Header Styles */
+header {
+    width: 1200px;
+    max-width: 90%;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 50px 1fr 50px;
+    grid-template-rows: 50px;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 100;
+}
+
+header .logo {
+    font-weight: bold;
+}
+
+header .menu {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    font-weight: 500;
+}
+
+/* Slider Styles */
+.slider {
+    height: 94vh;
+    margin-top: 0;
+    position: relative;
+}
+
+.slider .list {
+    position: relative;
+    height: 100%;
+}
+
+.slider .list .item {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: 0.5s;
+}
+
+.slider .list .item img {
+    width: 100%;
+    height: 100vh; /* Full height of the screen */
+    object-fit: cover; /* Ensures the image covers the entire container */
+    position: absolute; /* Keep the image positioned absolutely */
+    left: 0;
+    top: 0;
+}
+
+.slider .list .item::after {
+    content: '';
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    background-image: linear-gradient(to right, #FFF5E5 15%, transparent);
+}
+
+.slider .list .item.active {
+    opacity: 1;
+    z-index: 10;
+}
+
+/* Content Styles */
+.content {
+    position: absolute;
+    bottom: 300px;
+    z-index: 1;
+}
+
+.content p:nth-child(1) {
+    font-weight: 800;
+    font-size: larger;
+}
+
+.content h2 {
+    font-size: 75px;
+    margin: 0;
+}
+
+.content h3 {
+    font-size: 48px;
+    font-weight: 600;
+    margin: 0;
+}
+
+.content p {
+    margin-top: 10px;
+    transition: all 0.5s ease;
+}
+
+/* Animation Styles */
+@keyframes showContent {
+    to {
+        transform: translateY(0);
+        filter: blur(0);
+        opacity: 1;
+    }
+}
+
+.slider .list .item.active + .content p:nth-child(1),
+.slider .list .item.active + .content h2,
+.slider .list .item.active + .content h3,
+.slider .list .item.active + .content p:nth-child(3) {
+    transform: translateY(30px);
+    filter: blur(20px);
+    opacity: 0;
+    animation: showContent 0.5s 0.7s ease-in-out 1 forwards;
+}
+
+.slider .list .item.active + .content h2 {
+    animation-delay: 1s;
+}
+
+/* Animated Text Styles */
+.content .animated-text {
+    margin-top: 10px;
+    transition: all 0.5s ease;
+    transform: translateY(30px);
+    filter: blur(20px);
+    opacity: 0;
+}
+
+.content .animated-text {
+    animation: showContent 0.5s 0.7s ease-in-out 1 forwards;
+}
+
+/* Delay animations for animated-text elements */
+.content .animated-text:nth-of-type(1) {
+    animation-delay: 5s;
+}
+
+.content .animated-text:nth-of-type(2) {
+    animation-delay: 5s;
+}
+
+.content .animated-text:nth-of-type(3) {
+    animation-delay: 5s;
+}
+
+/* Arrow Button Styles */
+.arrows {
+    position: absolute;
+    bottom: 300px;
+    right: 40px;
+    z-index: 100;
+}
+
+.arrows button {
+    background-color: #eee5;
+    border: none;
+    font-family: monospace;
+    width: 40px;
+    height: 40px;
+    border-radius: 5px;
+    font-size: x-large;
+    color: #eee;
+    transition: 0.5s;
+}
+
+.arrows button:hover {
+    background-color: #eee;
+    color: black;
+}
+
+/* Thumbnail Styles */
+.thumbnail {
+    position: absolute;
+    bottom: 50px;
+    z-index: 11;
+    display: flex;
+    gap: 10px;
+    width: 100%;
+    height: 152px;
+    padding: 0 50px;
+    box-sizing: border-box;
+    overflow: auto;
+    justify-content: center;
+}
+
+.thumbnail::-webkit-scrollbar {
+    width: 0;
+}
+
+.thumbnail .item {
+    width: 150px;
+    height: 130px;
+    filter: brightness(0.5);
+    transition: 0.5s;
+    flex-shrink: 0;
+}
+
+.thumbnail .item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.thumbnail .item.active {
+    filter: brightness(1.5);
+}
+
+/* Responsive Styles */
+@media screen and (max-width: 678px) {
+    .thumbnail {
+        justify-content: start;
+        width: 95%;
+    }
+
+    .slider .list .item .content h2 {
+        font-size: 60px;
+    }
+    .content h2 {
+        font-size: 40px;
+    }
+    .content h3 {
+        font-size: 28px;
+    }
+    .content p {
+        font-size: 11px;
+    }
+    .arrows{
+        display: none;
+    }
+    .whatsapp_btn{
+        left: 80%;
+    }
+}
+
+/* WhatsApp Button Styles */
+.pulse-animation {
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.1);
+        opacity: 0.8;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.blink-animation {
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    50% {
+        opacity: 0;
+    }
+}
+
+/* Slider Container */
+.slider-container {
+    position: relative;
+    height: 100vh;
+}
+
+/* Updated Styles for List Items */
+.slider .list {
+    position: relative;
+    height: 100%;
+}
+
+/* Adjusting animation styles */
+.slider .list .item.active + .content p,
+.slider .list .item.active + .content h2,
+.slider .list .item.active + .content h3,
+.slider .list .item.active + .content p:nth-child(3) {
+    transform: translateY(30px);
+    filter: blur(20px);
+    opacity: 0;
+}
+
+.slider .list .item.active + .content p {
+    animation: showContent 0.5s ease-in-out forwards;
+}
+
+/* Ensure the main content fades in */
+@keyframes showContent {
+    from {
+        transform: translateY(30px);
+        filter: blur(20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        filter: blur(0);
+        opacity: 1;
+    }
+}
+
+@keyframes appear{
+    from{
+        opacity: 0;
+        clip-path: inset(100% 100% 0 0);
+    }
+    to{
+        opacity: 1;
+        clip-path: inset(0 0 0 0);
+    }
+}
+.animateCard{
+    animation: appear linear;
+    animation-timeline: view();
+    animation-range: entry 0% cover 38%;
+}
+
+
+
+  
+  /* Add delays for each element to appear one by one */
+  .content > :nth-child(1) {
+    animation-delay: 0s;
+  }
+  .content > :nth-child(2) {
+    animation-delay: 0.2s;
+  }
+  .content > :nth-child(3) {
+    animation-delay: 0.3s;
+  }
+  .content > :nth-child(4) {
+    animation-delay: 0.3s;
+  }
+  /* Loop the animation every 5 seconds */
+@keyframes loopAnimation {
+    0%, 80% {
+      animation: fadeInUp 5.3s ease-out forwards;
+    }
+    100% {
+      opacity: 0;
+      transform: translateY(200px);
+    }
+  }
+  
+  .animated-element {
+    animation: fadeInUp 5.3s ease-out forwards, loopAnimation 5.3s infinite;
+  }
+  
+  @keyframes fadeInUp {
+      0% {
+        opacity: 0;
+        transform: translateY(200px);
+      }
+      20% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      80% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      100% {
+        opacity: 0;
+        transform: translateY(200px);
+      }
+    }
+    
+    .content > * {
+      animation: fadeInUp 5.3s ease-in-out infinite;
+      opacity: 0;
+    }
+  
